@@ -25,6 +25,7 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an OpenID identifier and profile), and invoke a
 //   callback with a user object.
 passport.use(new SteamStrategy({
+    apiKey: "CBD4B6FF1511AD17841196BCE6B1E3E4",
     returnURL: 'http://localhost:3000/auth/steam/return',
     realm: 'http://localhost:3000/'
   },
@@ -45,7 +46,7 @@ passport.use(new SteamStrategy({
 
 
 
-var app = express.createServer();
+var app = express();
 
 // configure Express
 app.configure(function() {
@@ -104,7 +105,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
+server = http.createServer(app);
 
 
 // Simple route middleware to ensure user is authenticated.
